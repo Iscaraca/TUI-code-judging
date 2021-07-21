@@ -68,19 +68,40 @@ def draw_menu(stdscr):
     box.edit()
 
     # Test code
+    # Test cases, [input, output]
+    cases = [
+        [[5, 4, 3, 2, 1, 0], [0, 1, 2, 3, 4, 5]],
+        [[1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]],
+        [[1, 6, 6, 5, 3, 4], [1, 3, 4, 5, 6, 6]]]
+
     sorted_l = []
     message = box.gather()
-    message = "sorted_l = []\nl = [5, 4, 3, 2, 1, 0]\n" + message
 
-    startExec = timeit.default_timer()
+    endCode = timeit.default_timer()
 
-    loc = {}
-    exec(message, globals(), loc)
-    sorted_l = loc['sorted_l']
+    times = []
 
-    end = timeit.default_timer()
+    correctCases = 0
 
-    results.addstr(0, 0, "Input:\n[5, 4, 3, 2, 1, 0]\nOutput:\n" + str(sorted_l) + "\n\nExecution time: {:.5f}ms".format((end - startExec) * 1000.0) + "\n\nTime taken to type: {:.2f}s".format(end - startCode) + "\n\n\n\n\nPress any key to exit")
+    for case in cases:
+        messageNew = f"sorted_l = []\nl = {str(case[0])}\n" + message
+
+        startExec = timeit.default_timer()
+
+        loc = {}
+        exec(messageNew, globals(), loc)
+        sorted_l = loc['sorted_l']
+
+        endExec = timeit.default_timer()
+
+        times.append((endExec - startExec) * 1000.0)
+        if sorted_l == case[1]:
+            correctCases += 1
+    
+    caseResults = "Execution times\n" + '\n'.join(["Case {}: {:.5f}ms".format(i, times[i]) for i in range(len(times))])
+    accuracy = correctCases / len(cases) 
+
+    results.addstr(0, 0, caseResults + "\n\nAccuracy: {:.2f}%".format(accuracy * 100.0) + "\n\nTime taken to type: {:.2f}s".format(endCode - startCode) + "\n\n\n\n\nPress any key to exit")
 
     results.refresh()
     k = stdscr.getch()
