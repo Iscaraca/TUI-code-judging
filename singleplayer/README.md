@@ -1,7 +1,8 @@
-# TUI-code-judging
-A TUI implementation of online code judging for Python code, using curses.
+# TUI-code-judging (Single Player Mode)
 
-This was done as a Junior College computing project about socket programming with [Joel Leo](https://github.com/joelleoqiyi)
+Features of single player mode:
+- Allows users to code without the stress of having to beat someone else
+- Displays execution time along with time taken to type so users are able to not only see their efficiency in coding, but also their code's efficiency
 
 Displays question and allows users to write Python code in a text box
 ![image](https://user-images.githubusercontent.com/49803282/126229385-e1b803c2-b064-46d4-910a-7a8e7d83f744.png)
