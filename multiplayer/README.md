@@ -14,7 +14,7 @@ At every step, look at the prompt at the top of the screen and type the code int
 When a user submits their code, an exec() function on the server side(yeah I know) will run the input together with code before and after it. These extra code blocks are defined in the `config.json` file. The layout of code to be executed will look something like this:
 
 ```python
-Create an object 'my_socket'
+"""Instruction: Create an object 'my_socket'"""
 
 import socket # Prepended statement, invisible to students
 
