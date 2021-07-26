@@ -166,11 +166,11 @@ def battle(filename):
                 players[index][2] += 1
             send(
                 players[index],
-                f"Your code is {('correct' if result else 'wrong')}.\n\nYou took {timing/1000:.2f}s\n\nFor your reference, the model answer is:\n\t{code}"
+                f"Your code is {('correct' if result else 'wrong')}.\n\nYou took {float(timing)/1000:.2f}s\n\nFor your reference, the model answer is:\n\t{code}"
             )
 
     sendAll(
-        f"Here are the scores:\n\nPlayer 1:\n\tScore:{players[0][2]}\n\tTiming:{players[0][3]/1000:.2f}s\n\nPlayer 2:\n\tScore:{players[1][2]}\n\tTiming:{players[1][3]/1000:.2f}s",
+        f"Here are the scores:\n\nPlayer 1:\n\tScore:{players[0][2]}\n\tTiming:{float(players[0][3])/1000:.2f}s\n\nPlayer 2:\n\tScore:{players[1][2]}\n\tTiming:{float(players[1][3])/1000:.2f}s",
         endRequired=True,
     )
 
