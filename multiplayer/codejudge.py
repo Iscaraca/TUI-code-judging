@@ -6,7 +6,6 @@ import time
 
 # Connection with server
 s = socket.socket()
-s.settimeout(5)
 
 while True:
     addr = input("Valid IP address of server (e.g. 127.0.0.1): ")

@@ -89,8 +89,9 @@ def check(case, response):
         loc = {}
         exec(f"{case['prepend']}{response}{case['append']}", globals(), loc)
         return loc["test"]
-    except:
+    except Exception as e:
         print("something went wrong with execution of check. ")
+        print(e)
         return False
 
 

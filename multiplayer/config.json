@@ -25,15 +25,15 @@
 		{
 			"line": 3,
 			"skip": false,
-			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12345))\n\t",
-			"append": "\n\tnew_socket, addr = my_socket.accept()\n\tnew_socket.sendall(b'Hello from server')\n\tnew_socket.close()\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12345))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
+			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12346))\n\t",
+			"append": "\n\tnew_socket, addr = my_socket.accept()\n\tnew_socket.sendall(b'Hello from server')\n\tnew_socket.close()\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12346))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
 			"instructions": "Enable the socket to listen for incoming connections from client"
 		},
 		{
 			"line": 4,
 			"skip": false,
-			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12345))\n\tmy_socket.listen()\n\t",
-			"append": "\n\tnew_socket.sendall(b'Hello from server')\n\tnew_socket.close()\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12345))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
+			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12347))\n\tmy_socket.listen()\n\t",
+			"append": "\n\tnew_socket.sendall(b'Hello from server')\n\tnew_socket.close()\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12347))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
 			"instructions": "Store the new socket in 'new_socket' and address in 'addr' "
 		},
 		{
@@ -46,22 +46,22 @@
 		{
 			"line": 6,
 			"skip": false,
-			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12345))\n\tmy_socket.listen()\n\tnew_socket, addr = my_socket.accept()\n\t",
-			"append": "\n\tnew_socket.close()\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12345))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
+			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12348))\n\tmy_socket.listen()\n\tnew_socket, addr = my_socket.accept()\n\t",
+			"append": "\n\tnew_socket.close()\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12348))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
 			"instructions": "Send 'Hello from server' followed by a new line. "
 		},
 		{
 			"line": 7,
 			"skip": false,
-			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12345))\n\tmy_socket.listen()\n\tnew_socket, addr = my_socket.accept()\n\tnew_socket.sendall(b'Hello from server')\n\t",
-			"append": "\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12345))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
+			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12349))\n\tmy_socket.listen()\n\tnew_socket, addr = my_socket.accept()\n\tnew_socket.sendall(b'Hello from server')\n\t",
+			"append": "\n\tmy_socket.close()\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12349))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
 			"instructions": "Close the new chat socket"
 		},
 		{
 			"line": 8,
 			"skip": false,
-			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12345))\n\tmy_socket.listen()\n\tnew_socket, addr = my_socket.accept()\n\tnew_socket.sendall(b'Hello from server')\n\tnew_socket.close()\n\t",
-			"append": "\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12345))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
+			"prepend": "import socket\nfrom multiprocessing import * \nimport time\nimport ctypes\n\n\ndef server():\n\tmy_socket = socket.socket()\n\tmy_socket.bind(('127.0.0.1', 12350))\n\tmy_socket.listen()\n\tnew_socket, addr = my_socket.accept()\n\tnew_socket.sendall(b'Hello from server')\n\tnew_socket.close()\n\t",
+			"append": "\n\ndef client(test):\n\tmy_socket = socket.socket()\n\tmy_socket.connect(('127.0.0.1', 12350))\n\ttest.value = my_socket.recv(1024).decode()\n\tmy_socket.close()\n\n\nmanager = Manager()\ntest = manager.Value(ctypes.c_wchar_p, '')\np1 = Process(target = server)\np1.start()\ntime.sleep(2)\np2 = Process(target = client, args=(test,))\np2.start()\np2.join()\nif test.value == 'Hello from server':\n\ttest = True\nelse:\n\ttest = False",
 			"instructions": "Close the listening socket"
 		}
 	]
