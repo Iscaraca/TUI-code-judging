@@ -3,6 +3,7 @@ from multiprocessing import *
 import time
 import json
 import sys
+from random import randint
 
 players = []
 
@@ -26,7 +27,13 @@ def send(player, string, endRequired=False, instructionRequired=False):
 
     # player is a tuple (socket, address)
     print(f"sent {string} to player {player}")
-    player[0].sendall(string.encode())
+
+    try:
+        player[0].sendall(string.encode())
+    except:
+        del player[0]
+        sendAll("Something went wrong with the connection", endRequired=True)
+        sys.exit(1)
 
 
 def sendAll(string, endRequired=False, instructionRequired=False):
@@ -85,9 +92,13 @@ def check(case, response):
     if case["skip"]:
         return True
 
+    random_int = randint(12345, 22221)
+    prepend = case['prepend'].replace("REPLACE_RANDINT", str(random_int))
+    append = case['append'].replace("REPLACE_RANDINT", str(random_int))
+
     try:
         loc = {}
-        exec(f"{case['prepend']}{response}{case['append']}", globals(), loc)
+        exec(f"{prepend}{response}{append}", globals(), loc)
         return loc["test"]
     except Exception as e:
         print("something went wrong with execution of check. ")
@@ -110,6 +121,7 @@ def receive():
                 response += player[0].recv(1024)
             except:
                 print("Receiving failed.")
+                sendAll("Something went wrong with the connection", endRequired=True)
                 sys.exit(1)
 
         timing = response[response.find(b"&&TIME=") + 7 :].decode()
@@ -162,6 +174,7 @@ def battle(filename):
         for [index, timing, response] in responses:
             print(response)
             result = check(case, response)
+            print(result, response)
             players[index][3] += float(timing)
             if result:
                 players[index][2] += 1
